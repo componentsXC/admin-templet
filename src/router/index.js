@@ -21,23 +21,25 @@ export const DynamicRoutes = [
     path: '',
     component: () => import("@/pages/layout/index"),
     name: 'container',
-    redirect: 'home',
+    redirect: '/home',
     meta: {
-      requiresAuth: true,
-      name: '首页'
+      // requiresAuth: true,
+      name: '首页',
+      icom: 'el-icon-user'
     },
     children: [
       {
-        path: 'home',
+        path: '/home',
         component: () => import("@/pages/home/index"),
         name: 'home',
         meta: {
           name: '首页',
-          icom: 'icon-home'
+          icom: 'icon-order-manage'
         }
       }
     ]
   },
+  
   {
     path: '/404',
     name: 'Forbidden',
@@ -56,20 +58,20 @@ export const DynamicRoutes = [
 // 全局守卫
 router.beforeEach((to, from, next) => {
   if (!store.state.UserToken) {
-      if (
-          to.matched.length > 0 &&
-          !to.matched.some(record => record.meta.requiresAuth)   
-      ) next()
-       else next({ path: '/login' })
+    if (
+      to.matched.length > 0 &&
+      !to.matched.some(record => record.meta.requiresAuth)
+    ) next()
+    else next({ path: '/login' })
   } else {
-      if (!store.state.permission.permissionList) {
-          store.dispatch('permission/FETCH_PERMISSION').then(() => {
-              next({ path: to.path })
-          })
-      } else {
-          if (to.path !== '/login')  next() 
-          else next(from.fullPath)   
-      }
+    if (!store.state.permission.permissionList) {
+      store.dispatch('permission/FETCH_PERMISSION').then(() => {
+        next({ path: to.path })
+      })
+    } else {
+      if (to.path !== '/login') next()
+      else next(from.fullPath)
+    }
   }
 })
 

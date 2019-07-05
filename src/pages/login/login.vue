@@ -8,22 +8,22 @@
           status-icon
           :rules="rules"
           ref="ruleForm"
-          label-width="100px"
+          label-width="100px" 
           class="demo-ruleForm"
         >
-          <el-form-item label="用户名" prop="name">
+          <el-form-item label="用户名" prop="name" >
             <el-input type="text" v-model="ruleForm.name" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="pass">
             <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
+            <el-button type="primary" @click="submitForm('ruleForm')" native-type="submit">提交</el-button>
           </el-form-item>
         </el-form>
       </div>
     </section>
-    <div class="filter"></div>
+    <div class="filter" :style="{backgroundImage: 'url(' + bgImg + ')'}"></div>
   </div>
 </template>
 <script>
@@ -47,6 +47,7 @@ export default {
       }
     };
     return {
+      bgImg:require('@/assets/image/filter_BG.jpg'),
       ruleForm: {
         pass: "",
         checkPass: "",
@@ -77,11 +78,13 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+@import '@/styles/_mixin.scss';
 .form_container {
   & {
     width: 500px;
     height: auto;
     margin: auto;
+    // @include flex-center();
     padding: 200px 0 0 0;
   }
   & .title {
@@ -100,7 +103,7 @@ export default {
   top: 0;
   right: 0;
   bottom: 0;
-  background: url("~/img/filter_BG.jpg") no-repeat fixed;
+  // background: url("~/src/assets/image/filter_BG.jpg") no-repeat fixed;
   background-size: 100% 100%;
   -webkit-filter: blur(70px);
   z-index: -1;

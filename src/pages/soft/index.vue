@@ -1,10 +1,6 @@
 <template>
     <div>
-       生产列表
-       生产列表
-       生产列表
-       生产列表
-       生产列表
+       <router-view></router-view>
     </div>
 </template>
 
@@ -12,6 +8,9 @@
 export default {
     data() {
         return {}
+    },
+    mounted() {
+
     }
 }
 </script>

@@ -1,9 +1,8 @@
 <template>
     <div>
-        <router-view></router-view>
-        <TotalStatus/>
-        <TodoList/>
-        <Charts/>
+        <!-- <router-view></router-view> -->
+        <!-- <Charts/> -->
+       <Welcome/>
     </div>
 </template>
 
@@ -11,7 +10,7 @@
 import TotalStatus from './component/total-status'
 import TodoList from './component/todo-list'
 import Charts from './component/charts'
-
+import Welcome from './component/wellcome'
 export default {
     data() {
         return {}
@@ -22,7 +21,8 @@ export default {
     components: {
         TotalStatus,
         TodoList,
-        Charts
+        Charts,
+        Welcome
     }
 }
 </script>

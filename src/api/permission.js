@@ -6,3 +6,4 @@ export function fetchPermission() {
 export function login() {
     return http.get('/api/static/login.json')
 }
+

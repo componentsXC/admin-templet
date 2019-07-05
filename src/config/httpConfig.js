@@ -1,9 +1,18 @@
 import axios from 'axios'
 import store from '@/store/index.js'
 import baseURL from './baseUrl'
-import { Message } from 'element-ui'
+import { Message,Loading } from 'element-ui'
 const http = {}
-
+let loadingInstance
+function loadingIn(){   //开始加载
+  loadingInstance = Loading.service({ fullscreen: true ,background: 'rgba(48, 49, 51, 0.14)'})
+  setTimeout(() => {
+    loadingInstance.close()
+  },5000)
+}
+function loadingClose(){ //关闭加载
+  loadingInstance.close()
+}
 var instance = axios.create({
     timeout: 5000,
     baseURL
@@ -65,10 +74,12 @@ instance.interceptors.response.use(
 )
 
 http.get = function(url, options) {
+    loadingIn()
     return new Promise((resolve, reject) => {
         instance
             .get(url, options)
             .then(response => {
+                loadingClose()
                 if (response.code === 0) {
                     resolve(response.data)
                 } else {
@@ -79,16 +90,19 @@ http.get = function(url, options) {
                 }
             })
             .catch(e => {
+                loadingClose()
                 console.log(e)
             })
     })
 }
 
 http.post = function(url, data, options) {
+    loadingIn()
     return new Promise((resolve, reject) => {
         instance
             .post(url, data, options)
             .then(response => {
+                loadingClose()
                 if (response.code === 0) {
                     resolve(response.data)
                 } else {
@@ -99,6 +113,7 @@ http.post = function(url, data, options) {
                 }
             })
             .catch(e => {
+                loadingClose()
                 console.log(e)
             })
     })

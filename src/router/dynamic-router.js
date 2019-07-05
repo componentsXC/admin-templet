@@ -1,14 +1,34 @@
 ///* 需要权限判断的路由 */
 const dynamicRoutes = [
-
-    ///* 订单管理 */
+    ///* 软文推广 */
+    {
+        path: '/soft',
+        component: () => import('@/pages/soft'),
+        name: 'soft',
+        meta: {
+            name: '软文管理',
+            icon: 'icon-order-manage'
+        },
+        children: [
+            {
+                path: 'softList',
+                name: 'softList',
+                component: () => import('@/pages/soft/softList'),
+                meta: {
+                    name: '软文列表',
+                    icon: 'icon-order-manage'
+                }
+            },
+        ]
+    },
+    ///* 会员管理 */
     {
         path: '/order',
         component: () => import('@/pages/order-manage'),
         name: 'order-manage',
         meta: {
-            name: '订单管理',
-            icon: 'icon-email'
+            name: '会员管理',
+            icon: 'icon-order-manage'
         },
         children: [
             {
@@ -16,58 +36,20 @@ const dynamicRoutes = [
                 name: 'order-list',
                 component: () => import('@/pages/order-manage/order-list'),
                 meta: {
-                    name: '订单列表',
-                    icon: 'icon-quit'
+                    name: '会员信息',
+                    icon: 'icon-order-manage'
                 }
             },
-            {
-                path: 'product',
-                name: 'product-manage',
-                component: () => import('@/pages/order-manage/product-manage'),
-                meta: {
-                    name: '生产管理',
-                    icon: 'icon-service'
-                },
-                children: [
-                    {
-                        path: 'list',
-                        name: 'product-list',
-                        component: () => import('@/pages/order-manage/product-manage/production-list'),
-                        meta: {
-                            name: '生产列表',
-                            icon: 'icon-nav'
-                        }
-                    },
-                    {
-                        path: 'review',
-                        name: 'review-manage',
-                        component: () => import('@/pages/order-manage/product-manage/review-manage'),
-                        meta: {
-                            name: '审核管理',
-                            icon: 'icon-finance-manage'
-                        }
-                    }
-                ]
-            },
-            {
-                path: 'returnGoods',
-                name: 'return-goods',
-                component: () => import('@/pages/order-manage/return-goods'),
-                meta: {
-                    name: '退货管理',
-                    icon: 'icon-product-manage'
-                }
-            }
         ]
     },
 
-    ///* 产品管理 */
+    ///* 分享管理 */
     {
         path: '/goods',
         component: () => import('@/pages/goods-manage'),
         name: 'goods',
         meta: {
-            name: '产品管理',
+            name: '分享管理',
             icon: 'icon-order-manage'
         },
         children: [
@@ -76,41 +58,32 @@ const dynamicRoutes = [
                 name: 'goods-list',
                 component: () => import('@/pages/goods-manage/goods-list'),
                 meta: {
-                    name: '产品列表',
-                    icon: 'icon-home'
+                    name: '分享信息',
+                    icon: 'icon-order-manage'
                 }
             },
-            {
-                path: 'classify',
-                name: 'goods-classify',
-                component: () => import('@/pages/goods-manage/goods-classify'),
-                meta: {
-                    name: '产品分类',
-                    icon: 'icon-product-manage'
-                }
-            }
         ]
     },
-    //测试
+    //系统管理
     {
-        path:'/test',
-        component:() =>  import('@/pages/test'),
-        name:'测试',
-        meta:{
-            name:'测试',
-            icon: 'icon-product-manage'
+        path: '/test',
+        component: () => import('@/pages/test'),
+        name: '系统管理',
+        meta: {
+            name: '系统管理',
+            icon: 'icon-order-manage'
         },
-        children:[
+        children: [
             {
-                path:'test1',
-                component:() => import('@/pages/test/test1'),
-                name:'测试1',
-                meta:{
-                    name:'测试1',
-                    icon: 'icon-product-manage'
+                path: 'test1',
+                component: () => import('@/pages/test/test1'),
+                name: '权限管理',
+                meta: {
+                    name: '权限管理',
+                    icon: 'icon-order-manage'
                 }
             },
-          
+
         ]
     },
 ]

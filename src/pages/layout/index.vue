@@ -1,7 +1,7 @@
 <template>
     <div :class="{navCollapsed:isSidebarNavCollapse}">
         <sidebarNav  class="sidebar"/>
-        <mainContent/>
+        <mainContent class="mainC"/>
     </div>
 </template>
 
@@ -24,5 +24,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.mainC{
+        background: #eee;
+}
 </style>
